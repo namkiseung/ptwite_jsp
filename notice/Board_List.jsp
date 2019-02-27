@@ -56,7 +56,8 @@ request.setCharacterEncoding("utf-8");
 		   if(request.getParameter("col").equals("name")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_writer+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
 	   
 		}catch(Exception e){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
+			
+			//sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
 		}
 		
 		try{
@@ -154,14 +155,14 @@ document.getElementById("all_content").innerHTML = "<p><b>[ 총게시물 "+<%= a
 	</table>		<br/><br/>
 	
 		
-			<FORM name='frm' method='GET' action='' accept-charset="utf-8">				
+			<FORM name='frm' method='GET' action='' accept-charset="utf-8" style="width:800px;height:22px;">				
 					<SELECT name='col'> <!-- 검색 컬럼 -->
 						<OPTION value='name'>작성자</OPTION>
 						<OPTION value='title'>제목</OPTION>
 						<OPTION value='content'>내용</OPTION>
 						<OPTION value='title_content'>제목+내용</OPTION>
 					</SELECT>
-				<input type='text' name='word' value='' placeholder="특수문자 X" >
+				<input type='text' name='word' value='' placeholder="특수문자 X" style="width:200px;height:22px;">
 				<button type='submit'>검색</button>     
 				
 			</FORM>
@@ -170,7 +171,7 @@ document.getElementById("all_content").innerHTML = "<p><b>[ 총게시물 "+<%= a
 
 	 <%
 		  
-	 } catch (SQLException e){}
+	 } catch (SQLException e){out.println(e.getMessage());}finally{}
   if(session.getAttribute("id") == null){
   %>
   <input id="btn-world" type="button" value="글쓰기 권한이 부족합니다." style="width:1000px;height:50px;font-size:15px;"/>

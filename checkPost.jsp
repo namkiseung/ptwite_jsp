@@ -29,7 +29,10 @@
 								pstmt = conn.prepareStatement(sql); // 핸들을 생성하고 쿼리문을 등록합니다
 								rs = pstmt.executeQuery(); // resultset에 내용을 담아 옵니다
 								}
-								catch(SQLException e){e.printStackTrace();}
+								catch(SQLException e){
+									out.println(e.toString());
+									//e.printStackTrace();
+}
 								%>
 								<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 								<html>
@@ -66,7 +69,7 @@
 									<form name="checkPostForm" method="post">
 									<h5><span>지역선택시 <b>(광주, 대구, 세종, 제주 지역)</b>외 작업중</span></h5>
 									<center>동입력 : 
-											<!-- 동 입력 상자 --><input type="text" style=ime-mode:active; name="dong"></input><!-- 검색 버튼 -->
+											<!-- 동 입력 상자 --><input type="text" style="ime-mode:active;width:100%;height:40px;" name="dong" placeholder="ex) 판교동" autofocus></input><!-- 검색 버튼 -->
 											<input type="button" name="search" value="검색" onClick="javascript:checkSearch()">
 											</input><br></br><!--출력테이블-->
 											<table border="1" width="100%">
