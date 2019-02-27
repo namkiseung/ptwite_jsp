@@ -37,7 +37,7 @@
             Class.forName(driver);
             
             // 관리자 Login
-            String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+            String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
             String id = "testuser";
             String pw = "1234";
             
@@ -48,16 +48,32 @@
 			//기존비밀번호 체크할 변수
 			Boolean ischeckpw=false;
 			rs = st.executeQuery(check_sql);
-			while(rs.next()){  
+			if(rs.next()){  
 				ischeckpw=true;
 			}
 			
 			//기존비밀번호로 DB확인 결과 존재하면 update하자.
 			if (ischeckpw){	  
-				st.executeUpdate(sql);
-			}			
-            // 회원가입에 성공하였으면 첫 페이지로 보낸다
-            response.sendRedirect("main.jsp");        
+				try{
+					st.executeUpdate(sql);
+				}catch (SQLException e) {       
+					out.println("DB 연동 실패"+e);
+					out.println("query : "+sql);
+					out.println(sql);
+				}	
+				//회원가입 성공시
+				session.invalidate();
+				
+				// 2)첫 페이지로 보낸다
+				out.println("<script>");
+				out.println("alert('회원 정보가 수정되었습니다..');alert('다시 로그인 해주세요.'); location.href='http://192.168.56.1:8080/ologin.jsp';");
+				out.println("</script>");
+			}else{
+				out.println("<script>");
+				out.println("alert('비밀번호가 올바르지 않습니다.');location.href='http://192.168.56.1:8080/main.jsp';");
+				out.println("</script>");
+				
+			}		    
             
         } catch (SQLException e) {       
             out.println("DB 연동 실패"+e);

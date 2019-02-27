@@ -1,7 +1,4 @@
-@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-body {
-	font-family: 'Nanum Gothic', sans-serif;
-}
+
 #container {
 	width: 100%;
 	height: 100%;
@@ -50,7 +47,7 @@ body {
 }
 
 #leftnav a:link, .navlist a:visited, #hover{
-color: #666666;
+color: #AAAAAA;
 text-decoration: underline;
 font-weight: bold;
 }

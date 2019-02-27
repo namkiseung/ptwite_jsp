@@ -40,7 +40,7 @@ request.setCharacterEncoding("utf-8");
        String driver = "oracle.jdbc.driver.OracleDriver";  
        Class.forName(driver);
  
-       String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+       String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
        String id = "testuser";
        String pw = "1234";
  
@@ -56,26 +56,26 @@ request.setCharacterEncoding("utf-8");
 		   if(request.getParameter("col").equals("name")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_writer+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
 	   
 		}catch(Exception e){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 10 order by idxB desc"; 
+			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
 		}
 		
 		try{
 			
 			if(request.getParameter("col").equals("title")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
 		}catch(Exception e){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 10 order by idxB desc"; 
+			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
 		}
 		try{
 			
 			if(request.getParameter("col").equals("content")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_content+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
 		}catch(Exception e){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 10 order by idxB desc"; 
+			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
 		}
 		try{
 			
 			if(request.getParameter("col").equals("title_content")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+request.getParameter("word")+"%' or "+column_content+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
 		}catch(Exception e){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 10 order by idxB desc"; 
+			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
 		}
 	 
 	   rs = st.executeQuery(sql); 

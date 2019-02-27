@@ -14,7 +14,7 @@
 							} 
 							public void setConnection() // 디비 입출력전 연결 메소드
 							{
-							try{conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.177.135:1521:xe", "testuser", "1234");} // 디비 연결
+							try{conn = DriverManager.getConnection("jdbc:oracle:thin:@192.168.232.1:1521:xe", "testuser", "1234");} // 디비 연결
 							catch (SQLException e) {e.printStackTrace();} // 예외상황발생시 오류 출력
 							}
 							%><%

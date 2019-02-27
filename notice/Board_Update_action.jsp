@@ -19,7 +19,7 @@
        String driver = "oracle.jdbc.driver.OracleDriver";  
        Class.forName(driver);
  
-       String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+       String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
        String id = "testuser";
        String pw = "1234";
  
@@ -27,8 +27,8 @@
        Statement st = conn.createStatement();
 	
 		
-		   String req_name = session.getAttribute("name")
-			String req_email = session.getAttribute("email")
+		   String req_name = (String)session.getAttribute("name");
+			String req_email = (String)session.getAttribute("email");
 			String req_attach = request.getParameter("attach");	 	 
 			String req_title = request.getParameter("title");	 	 
 			String req_content = request.getParameter("content");	  
@@ -56,7 +56,7 @@
 } catch (SQLException e){}	
 		%>
 		<script>
-		setTimeout(function(){ location.href='/notice/Board_List.jsp'; }, 8500);
+		setTimeout(function(){ location.href='/notice/Board_List.jsp'; }, 500);
 		</script>
 </body>
 </html>

@@ -7,20 +7,20 @@
 	<link rel="stylesheet" type="text/css" href="signup.css">
 </head>
 <body style="background-color:#FFFFFF">
-
  <center>
  <h1> 회원가입</h1>
  <table bgcolor = "#bbbbbb" cellspacing = "1" >
- <FORM name="signup_form" action="signin_chk.jsp" method="post" onSubmit="return post_check();"
+ <FORM name="signup_form" action="signin_chk.jsp" method="post" onSubmit="return post_check();">
   <tr>
-   <td text-align="center" placeholder="userid">아이디 </td>
+   <td>아이디 </td>
    <td> 
-   <input type = "text" name="siup_id" onkeydown="idputIdChk()" />
+   <input type = "text" name="siup_id" onkeydown="idputIdChk;" placeholder="userid" readonly />
    <input type = "hidden" name="idDuplication" id="idDuplication" value="idUncheck" />
-   <input type = "button" value = "중복확인" onclick="duplication<!-- https://all-record.tistory.com/147?category=733042-->
+   <input type = "button" value = "중복확인" onclick="duplication()" > <!-- https://all-record.tistory.com/147?category=733042-->
    </td>
   </tr>
-  <tr>
+   <tr>
+   
    <td> 비밀번호 </td>
    <td> <input type = "password" name="siup_pw2" id="siup_pw2"/> </td>
   </tr>
@@ -35,7 +35,7 @@
   <tr>
    <td> 이메일 </td>
    <td>
-    <input type = "text" name="siup_email"/> @ <input type = "text" name="siup_domain"/> &nbsp;&nbsp; 
+    <input type = "text" name="siup_email" placeholder="email ID"/> @ <input type = "text" name="siup_domain" placeholder="naver.com"/> &nbsp;&nbsp; 
    </td>
   </tr>
   <script>
@@ -49,7 +49,7 @@ window.open("checkPost.jsp","","width=500 height=500 scrollbars=yes");
    <td> 주소 </td>
    <td>
     
-	<input type="text" name="siup_zip" style="width:60px; height:20px;" placeholder="zip code"/>
+	<input type="text" name="siup_zip" style="width:60px; height:20px;" placeholder="zip code" readonly />
     <input type="text" name="siup_addr1" style="width:250px; height:20px;" placeholder="addr" readonly />
 	<input type = "button" value = "주소찾기" onclick="checkPost()"/><br>
     <input type="text" name="siup_addr2" style="width:330px; height:20px;" placeholder="detail of addr"/>
@@ -80,6 +80,7 @@ function duplication(){
 }
 function idputIdChk(){
  document.getElementById("idDuplication").value = "idUncheck";
+ 
 }
 function post_check(){
 	if(document.getElementById("siup_pw").value != document.getElementById("siup_pw2").value){
@@ -90,6 +91,7 @@ function post_check(){
 		alert("Id 중복체크 하기!!");
 		return false;
 	}
+	
 }
 </script>
 </body>

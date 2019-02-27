@@ -26,7 +26,7 @@ int check=0;
 			</center>
 		</form>
 			<span style="margin-left:70%; font-size:10pt">Forgot your 
-			<a href="ologin.html">userid</a> or <a href="/sec01/findpw.jsp">password</a></span>
+			<a href="ologin.jsp">userid</a> or <a href="/sec01/findpw.jsp">password</a></span>
             <%
         } 
         // 현재 로그인된 아이디가 있다면 (= session에 저장된 id가 있다면)

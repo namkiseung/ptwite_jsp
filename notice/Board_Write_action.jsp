@@ -71,7 +71,7 @@
        String driver = "oracle.jdbc.driver.OracleDriver";  
        Class.forName(driver);
  
-       String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+       String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
        String id = "testuser";
        String pw = "1234";
  
@@ -89,7 +89,7 @@
 	e.printStackTrace();
 }	   
 %>
-		작업이 완료되었습니다. 목록으로 돌아갑니다!
+		작업이 완료되었습니다. 목록으로 돌아갑니다!!
 		<script>
 		
 		setTimeout(function(){ location.href='/notice/Board_List.jsp'; }, 500);

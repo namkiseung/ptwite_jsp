@@ -16,14 +16,19 @@
  String pass =request.getParameter("siin_pw");
  String email = "";
  String name = "";
+ 
+ String birth = "";
+ String address = "";
+ String joindate = "";
  String redirectUrl = "main.jsp";
+ String fail_redirectUrl = "ologin.jsp";
  Class.forName("oracle.jdbc.driver.OracleDriver");
  Connection conn = null;
  Statement stmt =null;
  ResultSet rs = null;
  
  try{
-  String JDBCINFO = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+  String JDBCINFO = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
   String ORA_USER = "testuser";
   String USER_PASSWD = "1234";
   String SQL_QUERY ="SELECT * FROM member WHERE USERID='"+id+"' and USERPW='"+pass+"'";
@@ -37,14 +42,24 @@
 	isLogin=true;
 	email = rs.getString("email");
 	name = rs.getString("name");
+	birth = rs.getString("birth");
+	address = rs.getString("address");
+	joindate = rs.getString("joindate");
   }
   if (isLogin){
 	  session.setAttribute("id",id);
 	  session.setAttribute("pw",pass);
 	  session.setAttribute("email",email);
 	  session.setAttribute("name",name);
+	  session.setAttribute("birth",birth);
+	  session.setAttribute("address",address);
+	  session.setAttribute("joindate",joindate);
+	  response.sendRedirect(redirectUrl);
   }else{
-	  %> <script> alert("계정 정보를 확인하세요."); history.go(-1); </script> <%
+	  out.println("<script>");
+	  out.println("location.href='ologin.jsp'");
+	  out.println("</script>");
+	  response.sendRedirect(fail_redirectUrl);
   }
   
  }catch(SQLException ex){
@@ -54,7 +69,7 @@
     //if (stmt != null) try { stmt.close();} catch(SQLException ex) {}
     //if (conn != null) try { conn.close(); } catch(SQLException ex) {}
  }
- response.sendRedirect(redirectUrl);
+ 
 %>
 </body>
 </html>

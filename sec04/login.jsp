@@ -11,22 +11,22 @@ int check=0;
         if(session.getAttribute("id") == null) {
             %>
 			
-		<form action="/sec04/login_chk.jsp" method="post">
+		<form name="loginform" action="/sec03/login_chk.jsp" method="post">
 			<center>
 				<table style="margin-top:20px;">
 					<tr>
 						<td>아이디 : </td><td><input type="text" name="siin_id" placeholder="username"></td>
 						<td>비밀번호 : </td><td><input type="password" name="siin_pw">&nbsp;&nbsp;</td>
 						<td>
-						<input type="submit" value="로그인"> &nbsp;<!-- 위의 form과 연동되어 loginProcess로 이동한다. -->
-				
+						<input type="submit" value="로그인" class="hover"> &nbsp;<!-- 위의 form과 연동되어 loginProcess로 이동한다. -->
+						<button><a href ="/sec03/agree.jsp" class="hover">회원가입</a></button>  <!-- 회원가입을 누르면 a태그를 통해서 joinForm으로 이동한다. -->
 						</td>
 					</tr>
 				</table>
 			</center>
 		</form>
 			<span style="margin-left:70%; font-size:10pt">Forgot your 
-			<a href="ologin.html">userid</a> or <a href="/sec04/findpw.jsp">password</a></span>
+			<a href="ologin.jsp">userid</a> or <a href="/sec03/findpw.jsp">password</a></span>
             <%
         } 
         // 현재 로그인된 아이디가 있다면 (= session에 저장된 id가 있다면)
@@ -34,7 +34,7 @@ int check=0;
             %>
 			
 		<table style="margin-top:20px;" >	
-		<form action="/sec04/logout.jsp" method="post">
+		<form name="logoutform" action="/sec03/logout.jsp" method="post">
 			<tr>
 				<td><%=session.getAttribute("id")%> 님</td>
 				<td>
@@ -44,7 +44,7 @@ int check=0;
 		</form>
 		</table>
 		<table style="margin-top:-54.5px;margin-left:160px;" >	
-		<form action="/sec04/user_edit.jsp" method="post" >
+		<form action="/sec03/user_edit.jsp" method="post" >
 			<tr>
 				<td>
 				<input type="hidden" value=<%=(String)session.getAttribute("id")%> name="id"/>

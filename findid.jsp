@@ -28,7 +28,7 @@
             
             
             // 관리자 
-            String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+            String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
             String id = "testuser";
             String pw = "1234";
             
@@ -43,13 +43,13 @@
 			}
 			//검색결과 없는경우
 			if(finded_userid==null){
-				out.println("<script>alert('ID 검색결과가 없습니다.'); location.href='../ologin.html';</script>");
+				out.println("<script>alert('ID 검색결과가 없습니다.'); location.href='../ologin.jsp';</script>");
 			}
 			//찾게되면 아이디 출력
-			out.println("<script>alert('ID : "+finded_userid+"'); location.href='../ologin.html';</script>");
+			out.println("<script>alert('ID : "+finded_userid+"'); location.href='../ologin.jsp';</script>");
         } catch (Exception e) {
 			e.printStackTrace();
-			out.println("<script>alert('ID 검색결과가 없습니다.'); location.href='../ologin.html';</script>");
+			out.println("<script>alert('ID 검색결과가 없습니다.'); location.href='../ologin.jsp';</script>");
 		}
 			
     %>

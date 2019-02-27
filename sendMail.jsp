@@ -11,7 +11,7 @@ String smtpPort = "465";
 
 //받는 사람의 정보
 String toName = "남기승";
-String toEmail = "rltmd1004@naver.com";
+String toEmail = "";
 
 request.getParameter("siup_id");
 request.getParameter("siup_id");
@@ -24,7 +24,7 @@ String fromEmail = request.getParameter("from");
 
 try {
  Properties props = new Properties();
- props.put("mail.smtp.host", smtpHost);
+ props.put("smtp.naver.com", smtpHost);
 
  Session sess = Session.getDefaultInstance(props, null);
  InternetAddress addr = new InternetAddress();
