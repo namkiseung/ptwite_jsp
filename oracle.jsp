@@ -19,7 +19,6 @@ Connection conn = null;
 Statement stmt = null;
 ResultSet rs = null;
 try {
-
  String JDBCINFO = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
  String ORA_USER = "testuser";
  String USER_PASSWD = "1234";

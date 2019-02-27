@@ -1,46 +1,61 @@
-<%@ page language="java" 
-    contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import = "java.sql.DriverManager" %>
+<%@ page import = "java.sql.Connection" %>
+<%@ page import = "java.sql.Statement" %>
+<%@ page import = "java.sql.ResultSet" %>
+<%@ page import = "java.sql.SQLException" %>
+
 <%
-    request.setCharacterEncoding("UTF-8");
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title> Login </title>
-</head>
-<body>
- 
-    <%
+int check=0;
         // 현재 로그인된 아이디가 없다면 (= session에 저장된 id가 없다면)
         if(session.getAttribute("id") == null) {
             %>
-            <h1> 로그인 페이지 </h1> 
-            <br /> <form action="login_check.jsp" method="post">
-            <br />
-            <br /> <input name="input_id" type="text">
-            <br />
-            <br /> <input name="input_pw" type="password"> <button> 로그인 </button>
-            <br /> </form>
-            <br /> <button onClick="location.href='join.jsp'"> 회원가입 </button>
+			
+		<form name="loginform" action="http://192.168.177.136:8080/login_chk.jsp" method="post">
+			<center>
+				<table style="margin-top:20px;">
+					<tr>
+						<td bgcolor=#ffffe8>아이디 : </td><td><input type="text" name="siin_id" placeholder="username"></td>
+						<td bgcolor=#ffffe8>비밀번호 : </td><td><input type="password" name="siin_pw">&nbsp;&nbsp;</td>
+						<td>
+						<input type="submit" value="로그인" class="hover"> &nbsp;<!-- 위의 form과 연동되어 loginProcess로 이동한다. -->
+						<button><a href ="http://192.168.177.136:8080/agree.jsp" class="hover">회원가입</a></button>  <!-- 회원가입을 누르면 a태그를 통해서 joinForm으로 이동한다. -->
+						</td>
+					</tr>
+				</table>
+			</center>
+		</form>
+			<span style="margin-left:70%; font-size:10pt">Forgot your 
+			<a href="ologin.html">userid</a> or <a href="http://192.168.177.136:8080/findpw.jsp">password</a></span>
             <%
         } 
         // 현재 로그인된 아이디가 있다면 (= session에 저장된 id가 있다면)
         else {
-            out.print(session.getAttribute("id") + " 님 환영합니다");
             %>
-            <h1> 로그인 페이지 </h1> 
-            <br /> <form action="logout.jsp" method="post">
-            <br />
-            <br /> <button> 로그아웃 </button>
-            <br />
-            <br /> </form>
-            <br /> <button onClick="location.href='change.jsp'"> 개인정보 변경</button>
-            <%
-        }
+			
+		<table style="margin-top:20px;" >	
+		<form name="logoutform" action="http://192.168.177.136:8080/logout.jsp" method="post">
+			<tr>
+				<td bgcolor=#ffffe8><%=session.getAttribute("id")%> 님</td>
+				<td>
+				<input type="submit" value="로그아웃"> &nbsp;<!-- 위의 form과 연동되어 loginProcess로 이동한다. -->
+				</td>
+			</tr>
+		</form>
+		</table>
+		<table style="margin-top:-54.5px;margin-left:160px;" >	
+		<form action="http://192.168.177.136:8080/user_edit.jsp" method="post" >
+			<tr>
+				<td>
+				<input type="hidden" value=<%=(String)session.getAttribute("id")%> name="id"/>
+				<input type="submit" value="정보수정"> &nbsp;<!-- 위의 form과 연동되어 loginProcess로 이동한다. -->
+				</td>
+			</tr>
+		</form>
+		
+		</table> 
+	<%
+       }
     %>
-    
- 
-</body>
-</html>
+
+
