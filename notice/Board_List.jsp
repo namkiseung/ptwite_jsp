@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*" %>
 <%@ page import = "javax.sql.*" %>
+<%@ page import = "java.util.*" %>
 <%
 request.setCharacterEncoding("utf-8"); 
+java.util.Calendar cal = java.util.Calendar.getInstance();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -31,7 +33,28 @@ request.setCharacterEncoding("utf-8");
 		모의해킹용 홈페이지 입니다.</marquee>
 	<p id="all_content">[ 총게시물 10개 ] 	</p>
 	<%	 
-	 
+	 final int ROWSIZE = 4; // 한페이지에 보일 게시물 수 
+	 final int BLOCK = 5; // 아래에 보일 페이지 최대개수 1~5 / 6~10 / 11~15 식으로 5개로 고정 
+	 int pg = 1; //기본 페이지값 
+	 if(request.getParameter("pg")!=null) { //받아온 pg값이 있을때, 다른페이지일때 
+		pg = Integer.parseInt(request.getParameter("pg")); // pg값을 저장 
+	 } 
+	 int _start = (pg*ROWSIZE) - (ROWSIZE-1); // 해당페이지에서 시작번호(step2) 
+	 int _end = (pg*ROWSIZE); // 해당페이지에서 끝번호(step2) 
+	 _start +=1;
+	 int allPage = 0; // 전체 페이지수 
+	 int startPage = ((pg-1)/BLOCK*BLOCK)+1; // 시작블럭숫자 (1~5페이지일경우 1, 6~10일경우 6) 
+	 int endPage = ((pg-1)/BLOCK*BLOCK)+BLOCK; // 끝 블럭 숫자 (1~5일 경우 5, 6~10일경우 10)
+	 if (pg==1){
+		 _start=0;
+		 _end=5;
+	 }else if(pg==2){
+		 _start=5;
+		 _end=10;
+	 }else if(pg==3){
+		 _start=10;
+		 _end=15;
+	 }
 
 	 int sequence = 0;
      try{
@@ -48,50 +71,43 @@ request.setCharacterEncoding("utf-8");
 	   Connection conn2 = DriverManager.getConnection(url, id, pw);
        Statement st = conn.createStatement();
 	   Statement st2 = conn2.createStatement();
-	   String sql="";
+	   
 	   String column_writer="WRITERB";
 	   String column_title="TITLEB";
 	   String column_content="CONTENTB";
-	   try{ 
-		   if(request.getParameter("col").equals("name")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_writer+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
 	   
-		}catch(Exception e){ 
-			
-			//sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
-		}
-		
-		try{
-			
-			if(request.getParameter("col").equals("title")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
-		}catch(Exception e){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
-		}
-		try{
-			
-			if(request.getParameter("col").equals("content")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_content+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
-		}catch(Exception e){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
-		}
-		try{
-			
-			if(request.getParameter("col").equals("title_content")){ sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+request.getParameter("word")+"%' or "+column_content+" like '%"+request.getParameter("word")+"%' order by idxB desc"; }
-		}catch(Exception e){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 20 order by idxB desc"; 
-		}
-	 
+	   String sql = "";
+	   
+	   if(request.getParameter("col") != null && request.getParameter("word") != null){
+		  String subject_search = request.getParameter("col");
+		  String search_word = request.getParameter("word");
+		  if(subject_search.equals("name")){ 
+			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_writer+" like '%"+search_word+"%' order by idxB desc"; 
+		  }else if(subject_search.equals("title")){ 
+			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+search_word+"%' order by idxB desc"; 
+		  }else if(subject_search.equals("content")){ 
+			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_content+" like '%"+search_word+"%' order by idxB desc"; 
+		  }else if(subject_search.equals("title_content")){ 
+			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+search_word+"%' or "+column_content+" like '%"+search_word+"%' order by idxB desc"; 
+		  }
+	   }else{
+		  
+			sql="select idxb, titleb, writerb, emailb, contentb, passb, hitb, attachb, dateb from (select idxb, titleb, writerb, emailb, contentb, passb, hitb, attachb, dateb, rownum rnum from noticeboard) where rnum > "+_start+" and rnum <= "+_end+"order by idxb desc";
+	   }
+	   //out.println(sql);
 	   rs = st.executeQuery(sql); 
 	   
 	   
 	   
-	   		  String all_content="";
+	   	String total="";
 		  try{
 		  String sql2 = "select count(*) from noticeboard";
 		  rs2 = st2.executeQuery(sql2); 
 		  while(rs2.next()) {
-			  all_content = rs2.getString(1);
+			  total = rs2.getString(1);
 		  }
 		  
-		  }catch(SQLException e){}
+		  }catch(Exception e){}
 %>
 	<table  width="800" height="200" border="1" bgcolor="#FFFFFF">
 		<colgroup>
@@ -111,7 +127,9 @@ request.setCharacterEncoding("utf-8");
 		</thead>
 		<tbody>
 		<%
-		int seq_max = Integer.parseInt(all_content);
+		
+		
+		int seq_max = Integer.parseInt(total);
 		sequence = seq_max+1;
 		while(rs.next()) {
 			sequence -= 1;
@@ -128,32 +146,46 @@ request.setCharacterEncoding("utf-8");
 		%>
 			<tr>
 				<td align="center"><a href="Board_View.jsp?num=<%=idx%>"><%=sequence %></a></td>
-				<td><a href="Board_View.jsp?num=<%=idx%>"><%=title %></a></td>
+				<td><a href="Board_View.jsp?num=<%=idx%>"><%=title %>
+				<%
+				if(day.substring(8,10).equals(String.valueOf(cal.get(java.util.Calendar.DATE)))){
+					out.println("<img src='http://192.168.56.1:8080/new.jpg' /");
+				}
+				%></a></td>
 				<td align="center"><a href="Board_View.jsp?num=<%=idx%>"><%=username %></a></td>
 				<td align="center"><font size="2px"><%=day %></font></td>
 				<td align="center"><%=hit %></td>
 			</tr>
-
 <%
 		}
-	
-
 %>
 <script>
-document.getElementById("all_content").innerHTML = "<p><b>[ 총게시물 "+<%= all_content%>+" 개 ]</b></p>";
-</script>
-	
-			
+document.getElementById("all_content").innerHTML = "<p><b>[ 총게시물 "+<%= total%>+" 개 ]</b></p>";
+</script>			
 		</tbody>
 		<tfoot>
-			<tr>
-				<td align="center" colspan="5">1</td>
-			</tr>
-			
 		</tfoot>	
-		
-	</table>		<br/><br/>
-	
+	</table>		<br/>
+	<table width="800" height="20" border="1" bgcolor="#FFFFFF">
+	<tr>
+				<%
+			for(int i=startPage; i<= endPage; i++){
+				if(i==pg){
+		%>
+					<td align='center' colspan='5' id='pagenation'><b><%=i %></b></td>
+		<%
+				}else{
+		%>
+					<td align='center' colspan='5' id='pagenation'><a href="Board_List.jsp?pg=<%=i %>"><%=i %></a></td>
+		<%
+				}
+			}
+		%>
+
+
+<!--출처: https://seinarin.tistory.com/11 [행복을 찾아서]-->
+			</tr>
+	</table><br/>
 		
 			<FORM name='frm' method='GET' action='' accept-charset="utf-8" style="width:800px;height:22px;">				
 					<SELECT name='col'> <!-- 검색 컬럼 -->
