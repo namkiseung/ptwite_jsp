@@ -4,7 +4,15 @@
 	<div id="leftnav">
 		<ul id="navlist"> 
 		<li><a href="http://192.168.56.1:8080/main.jsp">홈</a></li>
+		<li><a href="http://192.168.56.1:8080/best_content/Best_List.jsp">베스트글</a></li>
 		<li><a href="http://192.168.56.1:8080/notice/Board_List.jsp">게시판</a></li>
-		<li><a href="http://192.168.56.1:8080/guestbook.jsp">방명록</a></li>
+		<li><a href="http://192.168.56.1:8080/qna/Qna_List.jsp">Q&A</a></li>
+		<%
+		 if(session.getAttribute("id") != null) {
+		%>
+		<li><a href="http://192.168.56.1:8080/my_boardList.jsp">내가 쓴 글</a></li>
+		<%
+		 }
+		%>
 		</ul>
 	</div>

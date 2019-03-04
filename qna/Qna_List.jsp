@@ -72,9 +72,9 @@ java.util.Calendar cal = java.util.Calendar.getInstance();
        Statement st = conn.createStatement();
 	   Statement st2 = conn2.createStatement();
 	   
-	   String column_writer="WRITERB";
-	   String column_title="TITLEB";
-	   String column_content="CONTENTB";
+	   String column_writer="writerQ";
+	   String column_title="titleQ";
+	   String column_content="contentQ";
 	   
 	   String sql = "";
 	   
@@ -82,17 +82,17 @@ java.util.Calendar cal = java.util.Calendar.getInstance();
 		  String subject_search = request.getParameter("col");
 		  String search_word = request.getParameter("word");
 		  if(subject_search.equals("name")){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_writer+" like '%"+search_word+"%' order by idxB desc"; 
+			sql = "select * from QNABOARD where 0 < ROWNUM  and ROWNUM < 15 and "+column_writer+" like '%"+search_word+"%' order by idxQ desc"; 
 		  }else if(subject_search.equals("title")){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+search_word+"%' order by idxB desc"; 
+			sql = "select * from QNABOARD where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+search_word+"%' order by idxQ desc"; 
 		  }else if(subject_search.equals("content")){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_content+" like '%"+search_word+"%' order by idxB desc"; 
+			sql = "select * from QNABOARD where 0 < ROWNUM  and ROWNUM < 15 and "+column_content+" like '%"+search_word+"%' order by idxQ desc"; 
 		  }else if(subject_search.equals("title_content")){ 
-			sql = "select * from noticeboard where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+search_word+"%' or "+column_content+" like '%"+search_word+"%' order by idxB desc"; 
+			sql = "select * from QNABOARD where 0 < ROWNUM  and ROWNUM < 15 and "+column_title+" like '%"+search_word+"%' or "+column_content+" like '%"+search_word+"%' order by idxQ desc"; 
 		  }
 	   }else{
 		  
-			sql="select idxb, titleb, writerb, emailb, contentb, passb, hitb, attachb, dateb from (select idxb, titleb, writerb, emailb, contentb, passb, hitb, attachb, dateb, rownum rnum from noticeboard) where rnum > "+_start+" and rnum <= "+_end+"order by idxb desc";
+			sql="select idxQ, titleQ, writerQ, emailQ, contentQ, passQ, hitQ, attachQ, dateQ from (select idxQ, titleQ, writerQ, emailQ, contentQ, passQ, hitQ, attachQ, dateQ, rownum rnum from QNABOARD) where rnum > "+_start+" and rnum <= "+_end+"order by idxQ desc";
 	   }
 	   //out.println(sql);
 	   rs = st.executeQuery(sql); 
@@ -101,7 +101,7 @@ java.util.Calendar cal = java.util.Calendar.getInstance();
 	   
 	   	String total="";
 		  try{
-		  String sql2 = "select count(*) from noticeboard";
+		  String sql2 = "select count(*) from QNABOARD";
 		  rs2 = st2.executeQuery(sql2); 
 		  while(rs2.next()) {
 			  total = rs2.getString(1);
@@ -130,33 +130,29 @@ java.util.Calendar cal = java.util.Calendar.getInstance();
 		
 		
 		int seq_max = Integer.parseInt(total);
-		if(pg>1){
-			seq_max = seq_max - ((pg-1)*5);
-		}
 		sequence = seq_max+1;
-		
 		while(rs.next()) {
 			sequence -= 1;
 			
-			String idx = rs.getString("idxB");
-			String title = rs.getString("titleB");
-			String username = rs.getString("writerB");
-			String year_day = rs.getString("dateB");
+			String idx = rs.getString("idxQ");
+			String title = rs.getString("titleQ");
+			String username = rs.getString("writerQ");
+			String year_day = rs.getString("dateQ");
 			String month_day=year_day.replaceFirst("-", "년");
 			String day_day=month_day.replaceFirst("-", "월");
 			String dday=day_day.replaceFirst(" ", "일");
 			String day=dday.replaceFirst("일", "일 ");
-			String hit = rs.getString("hitB");
+			String hit = rs.getString("hitQ");
 		%>
 			<tr>
-				<td align="center"><a href="Board_View.jsp?num=<%=idx%>"><%=sequence %></a></td>
-				<td><a href="Board_View.jsp?num=<%=idx%>"><%=title %>
+				<td align="center"><a href="Qna_View.jsp?num=<%=idx%>"><%=sequence %></a></td>
+				<td><a href="Qna_View.jsp?num=<%=idx%>"><%=title %>
 				<%
 				if(day.substring(8,10).equals(String.valueOf(cal.get(java.util.Calendar.DATE)))){
 					out.println("<img src='http://192.168.56.1:8080/new.jpg' /");
 				}
 				%></a></td>
-				<td align="center"><a href="Board_View.jsp?num=<%=idx%>"><%=username %></a></td>
+				<td align="center"><a href="Qna_View.jsp?num=<%=idx%>"><%=username %></a></td>
 				<td align="center"><font size="2px"><%=day %></font></td>
 				<td align="center"><%=hit %></td>
 			</tr>
@@ -180,7 +176,7 @@ document.getElementById("all_content").innerHTML = "<p><b>[ 총게시물 "+<%= t
 		<%
 				}else{
 		%>
-					<td align='center' colspan='5' id='pagenation'><a href="Board_List.jsp?pg=<%=i %>"><%=i %></a></td>
+					<td align='center' colspan='5' id='pagenation'><a href="Qna_List.jsp?pg=<%=i %>"><%=i %></a></td>
 		<%
 				}
 			}
@@ -214,7 +210,7 @@ document.getElementById("all_content").innerHTML = "<p><b>[ 총게시물 "+<%= t
   <%
   }else{
   %>
-  <input id="btn-hello" type="button" value="글쓰기" onclick="move('Board_Write.jsp');" style="width:1000px;height:50px;font-size:30px;" />
+  <input id="btn-hello" type="button" value="글쓰기" onclick="move('Qna_Write.jsp');" style="width:1000px;height:50px;font-size:30px;" />
   <%
   
   }

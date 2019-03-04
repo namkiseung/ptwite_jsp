@@ -71,7 +71,7 @@
 	String pass="";
 	// request.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
     // 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
-    String uploadPath = request.getRealPath("/notice/board_storage");
+    String uploadPath = request.getRealPath("/qna/qna_storage");
 
 	int maxSize = 1024 * 1024 * 10; // 한번에 올릴 수 있는 파일 용량 : 10M로 제한
 	String fileName1 = ""; // 중복처리된 이름
@@ -132,8 +132,8 @@
  
        Connection conn = DriverManager.getConnection(url, id, pw);
        Statement st = conn.createStatement();   	 
-		String sql = "INSERT INTO noticeboard (IDXB, TITLEB, WRITERB, EMAILB, CONTENTB, PASSB, HITB, ATTACHB, DATEB) values (nb_seq.NEXTVAL, '"+req_title+"', '"+session.getAttribute("name")+"', '"+session.getAttribute("email")+"', '"+req_content+"', '"+pass+"', 0, '"+fileName1+"', to_char(sysdate, \'YYYY-MM-DD HH:MI:SS\'))";
-	   
+		String sql = "INSERT INTO QNABOARD (idxQ, titleQ, writerQ, emailQ, contentQ, passQ, hitQ, attachQ, dateQ) values (SEQ.NEXTVAL, '"+req_title+"', '"+session.getAttribute("name")+"', '"+session.getAttribute("email")+"', '"+req_content+"', '"+pass+"', 0, '"+fileName1+"', to_char(sysdate, \'YYYY-MM-DD HH:MI:SS\'))";
+	   // out.print(sql);
 		st.executeUpdate(sql);  
 		conn.close();
 		st.close();
@@ -144,7 +144,7 @@
 		작업이 완료되었습니다. 목록으로 돌아갑니다!!
 		<script>
 		
-		setTimeout(function(){ location.href='/notice/Board_List.jsp'; }, 500);
+		setTimeout(function(){ location.href='/qna/Qna_List.jsp'; }, 500);
 		</script>
 </body>
 </html>
