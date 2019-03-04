@@ -28,7 +28,7 @@
             
             
             // 관리자 
-            String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
+            String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
             String id = "testuser";
             String pw = "1234";
             
@@ -53,10 +53,6 @@
 		}
 			
     %>
- <!-- 참고 : https://hyeonstorage.tistory.com/114
- 참고 : https://fruitdev.tistory.com/118
- 참고 : https://rwd337.tistory.com/9
- 참고 : https://hyeonstorage.tistory.com/125
- -->
+ 
 </body>
 </html>

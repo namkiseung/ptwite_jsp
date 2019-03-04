@@ -1,56 +1,47 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-import="java.lang.*, java.util.*, java.util.Date, java.text.*, java.text.SimpleDateFormat, java.text.ParseException"
-import="java.sql.*, java.net.*, javax.mail.*, javax.mail.internet.*, javax.activation.*" %>
-<%
-response.setHeader ( "Cache-Control", "no-cache,no-store,must-revalidate" ) ;
-response.setHeader ( "Pragma", "no-cache" ) ;
-response.setDateHeader ( "Expires", 0 ) ;
-response.setCharacterEncoding ( "UTF-8" ) ;
-request.setCharacterEncoding ( "UTF-8" ) ;
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="javax.activation.*"%>
+<%@ page import="javax.mail.*"%>
+<%@ page import="javax.mail.internet.*"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<%// SMTP 서버 주소
+String smtpHost = "smtp.naver.com";
+String smtpPort = "465";
 
-String mail_recver = request.getParameter("from");
-String mail_sender_name = "보내는사람이름" ;
-String mail_sender_email = "계정@메일주소" ;
-String mail_subject ="test";
-String mail_msg="test" ;
 
-Properties props = System.getProperties ( ) ;
-props.put ( "mail.smtp.host" , "8.8.8.8" ) ; // 수정해주어야한다.
+//받는 사람의 정보
+String toName = "남기승";
+String toEmail = "";
+
+request.getParameter("siup_id");
+request.getParameter("siup_id");
+
+//보내는 사람의 정보
+String fromName = request.getParameter("to");
+String fromEmail = request.getParameter("from");
+
+
 
 try {
-	javax.mail.Session mailSession = javax.mail.Session.getInstance ( props , null /* new javax.mail.Authenticator ( )
-	{
-		protected javax.mail.PasswordAuthentication getPasswordAuthentication ( )
-		{
-			return new javax.mail.PasswordAuthentication ( "rlzld100@gmail.com" , "" ) ;
-		}
-	} */ ) ;
+ Properties props = new Properties();
+ props.put("smtp.naver.com", smtpHost);
 
-	InternetAddress [ ] recver_address = { new InternetAddress ( mail_recver ) } ;
+ Session sess = Session.getDefaultInstance(props, null);
+ InternetAddress addr = new InternetAddress();
+ addr.setPersonal(fromName,"UTF-8");
+ addr.setAddress(fromEmail);
 
-	InternetAddress sender_address = new InternetAddress ( ) ;
-	sender_address.setPersonal ( mail_sender_name , "UTF-8" ) ;
-	sender_address.setAddress ( mail_sender_email ) ;
+ // create a message
+ Message msg = new MimeMessage(sess);
+ msg.setFrom(addr);         
+ msg.setSubject(MimeUtility.encodeText("메일전송테스트", "utf-8","B"));
+ msg.setContent("메일전송테스트", "text/html;charset=utf-8");
+ msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
 
-	javax.mail.Message msg = new MimeMessage ( mailSession ) ;
-
-	msg.setHeader ( "Content-Type", "text/html; charset=UTF-8" ) ;
-	msg.setFrom ( sender_address ) ;
-	msg.setRecipients ( Message.RecipientType.TO , recver_address ) ;
-	msg.setSentDate ( new Date ( ) ) ;
-	msg.setSubject ( mail_subject ) ;
-	msg.setContent ( mail_msg , "text/html; charset=UTF-8" ) ;
-
-	javax.mail.Transport.send ( msg ) ;
-} catch ( Exception e ) {
-	String errMsg = "전자우편 발송에 실패하였습니다." ;
-	out.println("<script>");
-	out.println(errMsg);
-	out.println("</script>");
-	
-	
-} finally { }
-
-//참고 : https://joont.tistory.com/52
-//참고 : https://kh2ya.tistory.com/72
+ Transport.send(msg);
+} catch (Exception e) {
+ e.printStackTrace();
+ out.println("<script>alert('"+fromEmail+"님께 메일전송이 실패하였습니다.'); location.href='../main.jsp';</script>");
+}
+ out.println("<script>alert('메일이 전송되었습니다.'); location.href='../main.jsp';</script>");
 %>

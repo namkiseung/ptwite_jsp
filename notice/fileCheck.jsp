@@ -27,7 +27,7 @@
     제목 : <%=subject %><br/>
      
     <!-- 파일 다운로드 링크 클릭시 다운로드 될 수 있도록 fileDown1.jsp 페이지에서 처리 뒤에 쿼리문자열을 통해 중복 방지용 이름 fileName1 값을 같이 넘겨준다. -->
-    파일1 다운로드 : <a id="downA" href="http://192.168.56.1:8080/pure_fileupload/fileDown1.jsp?file_name=<%=originalName1%>"><%=originalName1%></a>
+    파일1 다운로드 : <a id="downA" href="http://192.168.177.136:8080/pure_fileupload/fileDown1.jsp?file_name=<%=originalName1%>"><%=originalName1%></a>
     <script type="text/javascript">
         // 영문파일은 그냥 다운로드 클릭시 정상작동하지만 한글파일명을 쿼리문으로 날릴경우 인코딩 문제가 발생할 수 있다. 한글이 깨져 정상작동하지 않을 수 있음
         // 따라서, 쿼리문자열에 한글을 보낼 때는 항상 인코딩을 해서 보내주도록 하자.

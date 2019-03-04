@@ -20,7 +20,7 @@
 							<!--<div id="sidebar">right area</div>-->
 	<div id="content">
 		TEST JSP 프로그래밍 !<br>
-		<button onclick="location.href='http://192.168.56.1:8080/main.jsp'">default Main</button>
+		<button onclick="location.href='http://192.168.177.136:8080/main.jsp'">default Main</button>
 	 </div>
 						<!--<div align="center" id="footer">footer area</div>-->
 </div>
