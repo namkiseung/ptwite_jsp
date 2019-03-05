@@ -28,7 +28,7 @@
 </form><br/><br/><br/>
 
 <!-------패스워드 찾기 컴포넌트------->
-<form action="sendMail.jsp" method="post">
+<form action="http://192.168.56.1:8080/sendMail.jsp" method="post">
 	<center>
             <table border=1 style="width: 300px; height: 100px;">
                 <tr><th colspan="2"><b><font size=6>PW 재설정</font></b></th></tr>

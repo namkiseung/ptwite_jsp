@@ -39,12 +39,12 @@
 		<caption>게시판 글쓰기</caption>	
     		<tr>
 				<td>작성자</td>
-				<td><%=session.getAttribute("name") %><input type=hidden name=name size=10 maxlength=8></td>
+				<td><%=session.getAttribute("name") %><input type=hidden name=name size=10 maxlength=8 value=<%=session.getAttribute("name") %>></td>
 				<!--<td><input type=hidden name=isAction value="write"/></td>-->
 			</tr>
 			<tr>
 	 			<td>E-Mail</td>
-	 			<td><%=session.getAttribute("email") %><input type=hidden name=email size=30></td>
+	 			<td><%=session.getAttribute("email") %><input type=hidden name=email size=30 value=<%=session.getAttribute("email") %>></td>
     		</tr>
     		<tr>
      			<td>첨부파일</td>

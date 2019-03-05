@@ -133,20 +133,20 @@ request.setCharacterEncoding("UTF-8");
 		<hr size=1>
 		<div align="center">
 		<%
-		if(session.getAttribute("id") != null && session.getAttribute("name").equals(username)){
+		//if(session.getAttribute("id") != null && session.getAttribute("name").equals(username)){
 		%>
 		[ <input type="button" value="목록" onclick="movelist('Qna_List.jsp');"> | 
 		<input type="button" value="수정" onclick="update_move('Qna_Update.jsp', '<%=username %>','<%=day %>','<%=email %>','<%=attach %>','<%=title %>',' <%=content %>', <%=data_num%>);"> |
 		<input type="button" value="답변" onclick="movelist('Qna_Reply.jsp');"> |
 		<input type="button" value="삭제" onclick="move('Qna_Delete.jsp?view=', '<%=data_num%>');">]<br>
 		<%
-		}else{
+		//}else{
 		%>
 		[ <input type="button" value="목록" onclick="movelist('Qna_List.jsp');"> | 
 		<input type="button" value="답변" onclick="movelist('Qna_Reply.jsp');"> ]
 		
 		<%
-		}
+		//}
 		%>
 		</div>
 		</td>

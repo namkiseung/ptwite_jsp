@@ -87,7 +87,7 @@ if(Integer.parseInt(cookie.getValue())<5){
 }else{
 	out.println("<p><h3> - 5분간 로그인이 비활성화 되었습니다. - </h3></p>");
 	out.println("<script>");
-	out.println("alert('5분간 로그인이 비활성화 되었습니다.');location.href='http://192.168.177.136:8080/main.jsp';");
+	out.println("alert('5분간 로그인이 비활성화 되었습니다.');location.href='http://192.168.56.1:8080/main.jsp';");
 	out.println("</script>");
 	
 }

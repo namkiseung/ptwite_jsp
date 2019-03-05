@@ -13,19 +13,20 @@ request.setCharacterEncoding("UTF-8");
 <title>글 읽기</title>
 <script type="text/javascript">
 	function move(url, num) {
-		location.href="http://192.168.177.136:8080/notice/"+url+num;
+		location.href="http://192.168.56.1:8080/notice/"+url+num;
 	}
 	function movelist(url) {
-		location.href="http://192.168.177.136:8080/notice/"+url;
+		location.href="http://192.168.56.1:8080/notice/"+url;
 	}
 	function update_move(url, username, day , email, attach, title, content, num) {
 		var params = new Object();
+		
 		params.username = username;
 		params.day = day;
 		params.email = email;
 		params.attach = attach;
 		params.title = title;
-		params.content = content;
+		params.content = content; //document.getElementsByTagName("td")[15].textContent;
 		params.num = num;
 		method = "post"; // Set method to post by default, if not specified.
     // The rest of this code assumes you are not using a library.
@@ -72,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
        String driver = "oracle.jdbc.driver.OracleDriver";  
        Class.forName(driver);
  
-       String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+       String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
        String id = "testuser";
        String pw = "1234";
  
@@ -95,7 +96,7 @@ request.setCharacterEncoding("UTF-8");
 			String username = rs.getString("writerB");
 			String day = rs.getString("dateB");
 			String email = rs.getString("emailB");
-			String content = rs.getString("contentB");
+			String content = rs.getString("contentB").trim();
 			String attach = rs.getString("attachB");
 			String hit = rs.getString("hitB");
 		%>
@@ -104,22 +105,22 @@ request.setCharacterEncoding("UTF-8");
 		<table border="1" summary="목록 테이블 구성"> 
     <tr> 
 		<td align=center bgcolor=#dddddd width=30%> 작성자</td>
-		<td bgcolor=#ffffe8 width=40%><%=username %></td>
+		<td name=username bgcolor=#ffffe8 width=40%><%=username %></td>
 		<td align=center bgcolor=#dddddd width=50%> 작성일</td>
-		<td bgcolor=#ffffe8 width=40%><%=day %></td>
+		<td name=date class=date bgcolor=#ffffe8 width=40%><%=day %></td>
 	</tr>
     <tr>
 		<td align=center bgcolor=#dddddd> E-mail </td>
-		<td bgcolor=#ffffe8 ><%=email %></td> 
+		<td class=email bgcolor=#ffffe8 ><%=email %></td> 
 		<td align=center bgcolor=#dddddd> 첨부파일 </td>
-		<td bgcolor=#ffffe8><a id="downA" href="http://192.168.177.136:8080/notice/Board_fileDown.jsp?file_name=<%=attach %>"><%=attach %></a></td> <!-- <a href="http://namkisec.tistory.com" target="_new">http://namkisec.tistory.com</a> -->
+		<td bgcolor=#ffffe8><a id="downA" href="http://192.168.56.1:8080/notice/Board_fileDown.jsp?file_name=<%=attach %>"><%=attach %></a></td> <!-- <a href="http://namkisec.tistory.com" target="_new">http://namkisec.tistory.com</a> -->
 	</tr>
 	<tr> 
 		<td align=center bgcolor=#dddddd> 제 목</td>
-		<td bgcolor=#ffffe8 colspan=3><%=title %></td>
+		<td class=title bgcolor=#ffffe8 colspan=3><%=title %></td>
    </tr>
    <tr> 
-		<td colspan=4><br><%=content %><br></td>
+		<td class=content colspan=4><br><%=content %><br></td>
    </tr>
    <tr>
 		<td colspan=4 align=right> 조회수  : <%=hit %></td>
@@ -127,7 +128,6 @@ request.setCharacterEncoding("UTF-8");
 	</table>
 	</td>
  	</tr>
-
 	<tr>
 		<td align=center colspan=2> 
 		<hr size=1>
@@ -136,7 +136,7 @@ request.setCharacterEncoding("UTF-8");
 		if(session.getAttribute("id") != null && session.getAttribute("name").equals(username)){
 		%>
 		[ <input type="button" value="목록" onclick="movelist('Board_List.jsp');"> | 
-		<input type="button" value="수정" onclick="update_move('Board_Update.jsp', '<%=username %>','<%=day %>','<%=email %>','<%=attach %>','<%=title %>',' <%=content %>', <%=data_num%>);"> |
+		<input type="button" value="수정" onclick="update_move('Board_Update.jsp', '<%=username %>','<%=day %>','<%=email %>','<%=attach %>','<%=title %>',' <%=content %>', '<%=data_num%>');"> |
 		<input type="button" value="답변" onclick="movelist('Board_Reply.jsp');"> |
 		<input type="button" value="삭제" onclick="move('Board_Delete.jsp?view=', '<%=data_num%>');">]<br>
 		<%

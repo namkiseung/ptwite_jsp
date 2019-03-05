@@ -81,7 +81,7 @@
  ResultSet rs = null;
  
  try{
-  String JDBCINFO = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+  String JDBCINFO = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
   String ORA_USER = "testuser";
   String USER_PASSWD = "1234";
   String SQL_QUERY ="SELECT * FROM member WHERE USERID='"+id+"' and USERPW='"+pass+"'";

@@ -37,7 +37,7 @@
             Class.forName(driver);
             
             // 관리자 Login
-            String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
+            String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
             String id = "testuser";
             String pw = "1234";
             
@@ -66,11 +66,11 @@
 				
 				// 2)첫 페이지로 보낸다
 				out.println("<script>");
-				out.println("alert('회원 정보가 수정되었습니다..');alert('다시 로그인 해주세요.'); location.href='http://192.168.177.136:8080/ologin.jsp';");
+				out.println("alert('회원 정보가 수정되었습니다..');alert('다시 로그인 해주세요.'); location.href='http://192.168.56.1:8080/ologin.jsp';");
 				out.println("</script>");
 			}else{
 				out.println("<script>");
-				out.println("alert('비밀번호가 올바르지 않습니다.');location.href='http://192.168.177.136:8080/main.jsp';");
+				out.println("alert('비밀번호가 올바르지 않습니다.');location.href='http://192.168.56.1:8080/main.jsp';");
 				out.println("</script>");
 				
 			}		    
