@@ -65,7 +65,7 @@ java.util.Calendar cal = java.util.Calendar.getInstance();
        String driver = "oracle.jdbc.driver.OracleDriver";  
        Class.forName(driver);
  
-       String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
+       String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
        String id = "testuser";
        String pw = "1234";
  
@@ -176,7 +176,7 @@ java.util.Calendar cal = java.util.Calendar.getInstance();
 				<td><a href="Board_View.jsp?num=<%=idx%>"><%=title %>
 				<%
 				if(day.substring(8,10).equals(String.valueOf(cal.get(java.util.Calendar.DATE)))){
-					out.println("<img src='http://192.168.56.1:8080/new.jpg' /");
+					out.println("<img src='http://192.168.177.136:8080/new.jpg' /");
 				}
 				%></a></td>
 				<td align="center"><a href="Board_View.jsp?num=<%=idx%>"><%=username %></a></td>
@@ -187,7 +187,7 @@ java.util.Calendar cal = java.util.Calendar.getInstance();
 		}
 %>
 <script>
-document.getElementById("all_content").innerHTML = "<p><b>[ 내가 작성한 게시글 ] </b></p><p> [정렬] <a href='http://192.168.56.1:8080/my_boardList.jsp?search=date'>날짜별</a> | <a href='http://192.168.56.1:8080/my_boardList.jsp?search=hit'>조회수별</a> | <a href='http://192.168.56.1:8080/my_boardList.jsp?search=qna'>QnA 게시판</a> | <a href='http://192.168.56.1:8080/my_boardList.jsp?search=notice'>Notice게시판</a></p>";
+document.getElementById("all_content").innerHTML = "<p><b>[ 내가 작성한 게시글 ] </b></p><p> [정렬] <a href='http://192.168.177.136:8080/my_boardList.jsp?search=date'>날짜별</a> | <a href='http://192.168.177.136:8080/my_boardList.jsp?search=hit'>조회수별</a> | <a href='http://192.168.177.136:8080/my_boardList.jsp?search=qna'>QnA 게시판</a> | <a href='http://192.168.177.136:8080/my_boardList.jsp?search=notice'>Notice게시판</a></p>";
 </script>			
 		</tbody>
 		<tfoot>

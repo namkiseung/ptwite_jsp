@@ -27,7 +27,7 @@
 							<!--<div id="sidebar">right area</div>-->
 	<div id="content">
 	<table summary="글쓰기 전체 테이블">
-		<form name="BoardWriteForm" method="post" action="http://192.168.56.1:8080/qna/Qna_Write_action.jsp">
+		<form name="BoardWriteForm" method="post" action="http://192.168.177.136:8080/qna/Qna_Write_action.jsp" enctype="Multipart/form-data">
 		
    		<colgroup>
    			<col width="20%">

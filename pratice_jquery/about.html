@@ -1,0 +1,435 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+
+<html lang="ko">
+<head>
+<!--<meta name="naver-site-verification" content="706aa243898eb24fdcb07bd409e1878eb5c4ac0d"/>
+<meta name="description" content="이홈페이지는 ~ 서비스로 전환하는 서비스입니다." />-->
+<meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+
+<!-- jQuery Core -->
+<script type="text/javascript" src="http://jquery.com/jquery-1.12.2.min.js"></script>
+<script type="text/javascript" src="http://jquery.com/jquery-ui-1.10.4.custom.min.js"></script>
+
+<!-- jQuery Form -->
+<script type="text/javascript" src="http://code.jquery.com/jquery/plugins/form/jquery.form.js"></script>
+
+<!-- jQuery Hotkeys -->
+<script type="text/javascript" src="http://jquery.com/jquery/plugins/hotkeys/jquery.hotkeys.js"></script>
+
+<!-- User Define Javascript -->
+<script type="text/javascript" src="http://jquery.com/common/common.message.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.ajax.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.freeform.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.ime.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.mask.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.valid.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.popup.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.func.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.date.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.prototype.js"></script>
+<script type="text/javascript" src="http://jquery.com/common/common.load.js"></script>
+
+<link rel=stylesheet type=text/css href="/mcash/css/mch/web/common.css" />
+<link rel=stylesheet type=text/css href="/mcash/css/mch/web/mcash.css" />
+<link rel=stylesheet type=text/css href="/mcash/css/mch/web/headhesive.css" />
+<link rel=stylesheet type=text/css href="/mcash/css/mch/web/fractionslider.css" />
+
+<script type="text/javascript" src="http://jquery.com/web/headhesive.min.js"></script>
+<script type="text/javascript" src="http://jquery.com/web/jquery.fractionslider.js"></script>
+<script type="text/javascript" src="http://jquery.com/web/main.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://jquery.com/web/animatescroll.js"></script>
+
+<script type="text/javascript">
+	var contextPath = "/mcash";
+</script>
+
+<title>About Namki</title>
+
+<link rel="stylesheet" type="text/css" href="/mcash/css/mch/Namkim.css" />
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		
+		popup01();
+		
+		
+		$("#btn_mcash").click(function() {
+			func.elementAddClass("#btn_mcash", ["selected"]);
+			func.elementRemoveClass("#btn_guide, #btn_charge, #btn_cs", ["selected"]);
+
+			func.elementAddStyle("#div_mcash", {"display":"block"});
+			func.elementAddStyle("#div_guide, #div_charge, #div_cs", {"display":"none"});
+		});
+		
+		
+		$("#btn_guide").click(function() {
+			func.elementAddClass("#btn_guide", ["selected"]);
+			func.elementRemoveClass("#btn_mcash, #btn_charge, #btn_cs", ["selected"]);
+
+			func.elementAddStyle("#div_guide", {"display":"block"});
+			func.elementAddStyle("#div_mcash, #div_charge, #div_cs", {"display":"none"});
+			
+		});
+		
+		
+		$("#btn_charge").click(function() {
+			func.elementAddClass("#btn_charge", ["selected"]);
+			func.elementRemoveClass("#btn_mcash, #btn_guide, #btn_cs", ["selected"]);
+			
+			func.elementAddStyle("#div_charge", {"display":"block"});
+			func.elementAddStyle("#div_mcash, #div_guide, #div_cs", {"display":"none"});
+			
+		});
+		
+		
+		$("#btn_cs").click(function() {
+			func.elementAddClass("#btn_cs", ["selected"]);
+			func.elementRemoveClass("#btn_mcash, #btn_guide, #btn_charge", ["selected"]);
+			
+			func.elementAddStyle("#div_cs", {"display":"block"});
+			func.elementAddStyle("#div_mcash, #div_guide, #div_charge", {"display":"none"});
+		});
+		
+		
+		$("#btnPb").click(function() {
+			window.open("http://www.phonebillcard.co.kr", "pbPopup");
+		});
+		
+		
+		$("#btnMt").click(function() {
+			window.open("http://bit.ly/1m3fbaP", "mtPopup");
+		});
+		
+		
+		$("#btnChg01").click(function() {
+			
+			window.open("/mcash/mch/mchqChg/chgPop01.do", "chgPopup", "scrollbars=yes,toolbar=yes,resizable=yes,width=600,height=650,left=0,top=0");
+		});
+		
+		
+		$("#btnChg02").click(function() {
+			
+			window.open("/mcash/mch/mchqChg/chgPop01.do", "chgPopup", "scrollbars=yes,toolbar=yes,resizable=yes,width=600,height=650,left=0,top=0");
+		});
+		
+		
+		$("#btnSvc").click(function() {
+			window.open("/mcash/mch/mchqMngt/svcIdeaPop.do", "svcPopup", "scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=650,left=0,top=0");
+		});
+		
+		
+		$("#btnClauseMain01").click(function() {
+			window.open("/mcash/mch/mchqMngt/divClauseMain01.do", "divClauseMain01", "scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=650,left=0,top=0");
+		});
+		
+		
+		$("#btnClauseMain02").click(function() {
+			window.open("/mcash/mch/mchqMngt/divClauseMain04.do", "divClauseMain04", "scrollbars=yes,toolbar=yes,resizable=yes,width=800,height=650,left=0,top=0");
+		});
+		
+		
+		$("#btnHome").click(function() {
+			location.href = "/mcash/mch/mchqMngt/webIndex.do";
+		});
+		
+	});
+	
+	
+	function popup01() {
+		if (notice_getCookie("eventPop01") != "done") {
+			// 이미지 가로/세로 사이즈 기술
+			var imgWidth = 400;
+			var imgHeight = 550;
+			
+			if (false) {
+				imgHeight = 380;
+			}
+			
+			// 여백 추가
+			var width = imgWidth + 0;  // 2, 30
+			var height = imgHeight;
+			
+			var left = (screen.width - width) / 2;
+			var top = (screen.height - height) / 2  - 40;
+			var env = "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top + ",scrollbars=no,statusbars=no,resizable=no";
+			var url = "/mcash/eventPop01.jsp";
+			
+			window.open(url, "eventPop01", env);
+		}
+	}
+	
+	// 쿠키값 정보 가져오기 2017.01.25 추가
+	function notice_getCookie(name) {
+		var nameOfCookie = name + "=";
+		var x = 0;
+		
+		while (x <= document.cookie.length) {
+			var y = (x+nameOfCookie.length);
+			if (document.cookie.substring( x, y ) == nameOfCookie) {
+				if ((endOfCookie=document.cookie.indexOf(";", y)) == -1) {
+					endOfCookie = document.cookie.length;
+				}
+				return unescape(document.cookie.substring(y, endOfCookie));
+			}
+			x = document.cookie.indexOf(" ", x) + 1;
+			if (x == 0) {
+				break;
+			}
+		}
+		
+		return "";
+	}
+</script>
+<!--[if lt IE 9]>
+<script src="js/respond.min.js"></script>
+<script src="js/html5shiv.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+<!--wrapper 영역-->
+<div id="wrapper">
+	<!--header 영역-->
+	<div id="header" class="banner">
+		<div class="inner">
+			<h1><a href="#" onclick="$('body').animatescroll();">Namki Mcash</a></h1>
+			<ul class="nav">
+				<li><a onclick="$('#service_info').animatescroll();"><span> Namki site 소개</span></a></li>
+				<li><a onclick="$('#service_guide').animatescroll();"><span>이용안내</span></a></li>
+				<li><a onclick="$('#cash_perchase').animatescroll();"><span>충전하기</span></a></li>
+				<li><a onclick="$('#cs_area').animatescroll();"><span>고객센터</span></a></li>
+			</ul>
+		</div>
+	</div>
+	<!--//header 영역-->
+	
+	<!--top slider 영역-->
+	<div id="mainImg">
+		<div class="slider_wrapper">
+			<div class="responisve-container">
+				<div class="slider">
+					<div class="fs_loader"></div>
+					<div class="slide">
+						<h3 data-position="140,0" data-in="left" data-delay="0">Namki  에서 제공하는 폰빌, 엠틱서비스를</h3>
+						
+						<h2 data-position="177,0" data-in="left" data-delay="0"><em>휴대폰</em>으로 간편하게<br/><em>충전</em>할 수 있는 <em> Namki site</em></h2>
+						
+						<img src="/mcash/images/mch/web/top_slider01.png" data-position="0,484" data-in="left" data-delay="500" data-out="none">
+						
+						<div class="btn btn_slider_go" data-position="335,0" data-delay="300" data-out="none" style="vertical-align:middle;">
+							<a id="btnChg01">충전 바로가기</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//top slider 영역-->
+		
+	<a id="showHere"></a>
+	
+	<div class="deco_arrow"></div>
+	
+	<!--Namki  Namki site 소개 영역-->
+	<div id="service_info" class="content bg_gray">
+		<div class="inner">
+			<h2> Namki site 소개</h2>
+			<dl>
+				<dt> Namki site란?</dt>
+				<dd>
+					<ul>
+						<li>ㆍ휴대폰 결제를 통해  Namki를 충전한 후,   O2O 서비스(폰빌카드/엠틱)로 전환하는 서비스입니다.</li>
+						<li style="text-align:left; width:999px;">ㆍ서비스 이용에 별도의 가입절차 등은 필요하지 않습니다.</li>
+						<li>ㆍ전환된  Namki는 전국 신용카드 가맹점 온/오프라인 및 엠틱 가맹점에서 사용 가능합니다.</li>
+					</ul>
+				</dd>
+				
+				<dt class="MAT50"> Namki site! 서비스 Point!</dt>
+				<dd class="MAT40">
+					<ul class="point_list">
+						<li>
+							<p><img src="/mcash/images/mch/web/service_point_list01.png" alt="" /></p>
+							<p class="txt">코끼리처럼<br /> Namki를 흡수!</p>
+						</li>
+						<li>
+							<p><img src="/mcash/images/mch/web/service_point_list02.png" alt="" /></p>
+							<p class="txt">충전된  Namki site는<br />폰빌카드/엠틱으로 바로 전환!</p>
+						</li>
+						<li>
+							<p><img src="/mcash/images/mch/web/service_point_list03.png" alt="" /></p>
+							<p class="txt">내 휴대폰 속 코끼리로<br /> Namki를 모으자!</p>
+						</li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<!--//Namki  Namki site 소개 영역-->
+	
+	<div id="service_guide" class="content">
+		<div class="inner">
+			<h2> Namki site 이용안내/방법</h2>
+			<ul>
+				<li>
+					<p><img src="/mcash/images/mch/web/icon_num01.png" alt="1" /></p>
+					<h4>충전금액 선택하기</h4>
+					<p>충전금액을 입력하고,<br/>충전하기 버튼을 클릭해주세요.</p>
+					<p class="screenshot"><img src="/mcash/images/mch/web/main_img02_01.png" alt="Namki  Namki site 충전페이지 스크린샷" /></p>
+				</li>
+				<li class="arrow"></li>
+				<li>
+					<p><img src="/mcash/images/mch/web/icon_num02.png" alt="2" /></p>
+					<h4> Namki site 결제하기</h4>
+					<p>휴대폰 결제창에서 휴대폰 번호 인증 후<br/> Namki site 결제를 진행해주세요</p>
+					<p class="screenshot"><img src="/mcash/images/mch/web/main_img02_01.png" alt="Namki  Namki site 충전페이지 스크린샷" /></p>
+				</li>
+				<li class="arrow"></li>
+				<li>
+					<p><img src="/mcash/images/mch/web/icon_num03.png" alt="3" /></p>
+					<h4> Namki site 전환하기</h4>
+					<p>충전한  Namki site를<br/>폰빌카드 혹은 엠틱으로 전환해 주세요.</p>
+					<p class="screenshot"><img src="/mcash/images/mch/web/main_img02_01.png" alt="Namki  Namki site 충전페이지 스크린샷" /></p>
+				</li>
+			</ul>
+			<p class="guide_comment">※ 전환된  Namki site는 온/오프라인 가맹점에서 사용 가능 합니다.</p>
+		</div>
+	</div>
+		
+	<div id="cash_perchase" class="content bg_gray">
+		<div class="inner">
+			<h2> Namki site 충전하기</h2>
+			<dl>
+				<dt>서비스 활용</dt>
+				<dd>
+					<ul class="service_list">
+						<li class="phonebill">
+							<div class="img_service"><img src="/mcash/images/mch/web/service_list01.png" alt="폰빌카드 이미지" /></div>
+							<div class="service_txt phonebill">
+								<p class="number">01</p>
+								<h4>폰빌카드</h4>
+								<hr />
+								<p class="place">온/오프라인 신용카드 가맹점<br/>(신한카드)에서 사용 가능</p>
+								<p class="btn"><a id="btnPb">폰빌카드 바로가기<span>&gt;</span></a></p>
+							</div>
+						</li>
+						
+						<li class="mtic">
+							<div class="img_service"><img src="/mcash/images/mch/web/service_list02.png" alt="엠틱 이미지" /></div>
+							<div class="service_txt mtic">
+								<p class="number">02</p>
+								<h4>엠틱 Namki</h4>
+								<hr />
+								<p class="place">엠틱가맹점(편의점/기프티샵/<br/>도미노피자/미샤 등)에서 사용 가능</p>
+								<p class="btn"><a id="btnMt">엠틱 바로가기<span>&gt;</span></a></p>
+							</div>
+						</li>
+					</ul>
+				</dd>
+				
+				<dt>결제 수단</dt>
+				<dd>휴대폰 결제만 가능</dd>
+				
+				<dt>충전 가능 금액</dt>
+				<dd>1만원, 3만원, 5만원, 10만원, 15만원, 20만원, 25만원 (수수료 : 1만원 당 450원)</dd>
+				
+			</dl>
+			
+			<div class="btn btn_purchase MAT50"><a id="btnChg02"> Namki site 충전하기</a></div>
+				
+		</div>
+		
+		<dl class="notice">	
+			<dt>유의 사항</dt>
+			<dd>
+				<ul>
+					<li>ㆍ충전한  Namki를 즉시 전환하지 않는 경우, 자동으로  Namki 결제가 취소 됩니다.</li>
+					<li>ㆍ Namki 충전 시 입력한 휴대폰 번호와 동일한 번호로 폰빌카드/엠틱 서비스에 가입된 경우에만  Namki 전환이 가능합니다.</li>
+					<li>ㆍ Namki 충전은 만 19세 이상만 가능합니다.</li>
+				</ul>
+			</dd>
+		 </dl>
+	</div>
+	
+	<div id="cs_area" class="content">
+		<div class="inner">
+			<div class="cs_content">
+				<div class="icon"><img src="/mcash/images/mch/web/icon_cs_tel.png" alt="" /></div>
+				<div class="cs_txt">
+					<h3> Namki site 고객센터</h3>
+					<p class="cs_tel">1600-0523</p>
+					<p>상담시간 : 평일 09:00 ~ 18:00</p>
+				</div>
+			</div>
+			
+			<div class="cs_content">
+				<div class="icon"><img src="/mcash/images/mch/web/icon_cs_idea.png" alt="" /></div>
+				<div class="cs_txt">
+					<h3>서비스 개선 아이디어 제안</h3>
+					<p>고객님의 소중한 의견을 기다리고 있습니다.</p>
+					<div class="btn btn_idea"><a id="btnSvc">아이디어 제안하기</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id="footer" class="bg_dark_gray">
+		<div class="inner">
+			<div class="ft_logo">Namki Mobiiians</div>
+			
+			<div class="ft_content">
+				<ul class="ft_terms">
+					<li><a id="btnClauseMain01">이용약관</a></li>
+					<li class="bar">|</li>
+					<li><a id="btnClauseMain02">개인정보취급방침</a></li>
+				</ul>
+				<p class="address">경기도 성남시 대왕판교로 660 유스페이스 1A 6층 SKinfosec</p>
+				<p class="copy">COPYRIGHT (C) 2019 Namki . ALL RIGHTS RESERVED.</p>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<!--//wrapper 영역-->
+
+<!--header 스크립트-->
+<script>
+	// Set options
+	var options = {
+		offset: '#showHere',
+		offsetSide: 'top',
+		classes: {
+			clone:   'banner--clone',
+			stick:   'banner--stick',
+			unstick: 'banner--unstick'
+		}
+	};
+	
+	// Initialise with options
+	var banner = new Headhesive('.banner', options);
+	
+	// Headhesive destroy
+	// banner.destroy();
+</script>
+<!--//header 스크립트-->
+</body>
+</html>
+<!-- design(idea) referer : http://www.kgmcash.co.kr/-->

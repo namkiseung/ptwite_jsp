@@ -5,7 +5,7 @@
 <%@
 Connection conn=null;
 String driver = "oracle.jdbc.driver.OracleDriver";
-String url = "jdbc:oracle:thin:@192.168.232.1:1521:XE";
+String url = "jdbc:oracle:thin:@192.168.177.135:1521:XE";
 	
 Boolean connect = false;
 	

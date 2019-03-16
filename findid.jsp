@@ -28,7 +28,7 @@
             
             
             // 관리자 
-            String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
+            String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
             String id = "testuser";
             String pw = "1234";
             

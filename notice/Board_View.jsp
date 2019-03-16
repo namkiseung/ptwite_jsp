@@ -13,10 +13,10 @@ request.setCharacterEncoding("UTF-8");
 <title>글 읽기</title>
 <script type="text/javascript">
 	function move(url, num) {
-		location.href="http://192.168.56.1:8080/notice/"+url+num;
+		location.href="http://192.168.177.136:8080/notice/"+url+num;
 	}
 	function movelist(url) {
-		location.href="http://192.168.56.1:8080/notice/"+url;
+		location.href="http://192.168.177.136:8080/notice/"+url;
 	}
 	function update_move(url, username, day , email, attach, title, content, num) {
 		var params = new Object();
@@ -73,7 +73,7 @@ request.setCharacterEncoding("UTF-8");
        String driver = "oracle.jdbc.driver.OracleDriver";  
        Class.forName(driver);
  
-       String url = "jdbc:oracle:thin:@192.168.232.1:1521:xe";
+       String url = "jdbc:oracle:thin:@192.168.177.135:1521:xe";
        String id = "testuser";
        String pw = "1234";
  
@@ -113,7 +113,7 @@ request.setCharacterEncoding("UTF-8");
 		<td align=center bgcolor=#dddddd> E-mail </td>
 		<td class=email bgcolor=#ffffe8 ><%=email %></td> 
 		<td align=center bgcolor=#dddddd> 첨부파일 </td>
-		<td bgcolor=#ffffe8><a id="downA" href="http://192.168.56.1:8080/notice/Board_fileDown.jsp?file_name=<%=attach %>"><%=attach %></a></td> <!-- <a href="http://namkisec.tistory.com" target="_new">http://namkisec.tistory.com</a> -->
+		<td bgcolor=#ffffe8><a id="downA" href="http://192.168.177.136:8080/notice/Board_fileDown.jsp?file_name=<%=attach %>"><%=attach %></a></td> <!-- <a href="http://namkisec.tistory.com" target="_new">http://namkisec.tistory.com</a> -->
 	</tr>
 	<tr> 
 		<td align=center bgcolor=#dddddd> 제 목</td>
